@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controllers.PrimaryController">
+    <Button text="Login" fx:id="loginButton" onAction="#switchToSecondary"/>
+    <Button text="Register" fx:id="registerButton" onAction="#switchToSecondary"/>
+</VBox>
+
+

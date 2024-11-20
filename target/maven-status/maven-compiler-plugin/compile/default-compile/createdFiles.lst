@@ -1,0 +1,8 @@
+com\example\models\DatabaseConnection.class
+com\example\FitnessApp.class
+com\example\controllers\AddController.class
+com\example\controllers\SecondaryController.class
+com\example\models\Exercise.class
+com\example\models\Food.class
+com\example\controllers\PrimaryController.class
+com\example\utils\DatabaseQueries.class
