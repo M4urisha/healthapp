@@ -26,7 +26,7 @@
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>11.2.0.jre8</version> <!-- You can use a different version if needed -->
+            <version>12.8.1.jre11</version> <!-- You can use a different version if needed -->
         </dependency>
     </dependencies>
 

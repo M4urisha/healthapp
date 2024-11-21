@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class AddController {
 
     @FXML
@@ -30,7 +31,6 @@ public class AddController {
         // Load foods and exercises into the combo boxes
         List<Food> foodList = dbQueries.getFoodItems();
         List<Exercise> exerciseList = dbQueries.getExerciseItems();
-        
             // Check if data is being populated correctly
     if (foodList.isEmpty()) {
         System.out.println("No food items found.");
