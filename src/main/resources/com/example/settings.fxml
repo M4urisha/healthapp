@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SettingsController" spacing="10">
+    <!-- Display current goal -->
+    <Label fx:id="goalLabel" text="Goal: 2000 calories" />
+
+    <!-- Input field to enter new goal -->
+    <TextField fx:id="newGoalField" promptText="Enter new goal" />
+
+    <!-- Change Goal button -->
+    <Button fx:id="changeGoalButton" text="Change Goal" onAction="#handleChangeGoal" />
+    
+    <!-- Input field for name -->
+    <TextField fx:id="nameTextField" promptText="Enter your name" />
+
+    <!-- Save Name button -->
+    <Button fx:id="saveNameButton" text="Save Name" onAction="#handleSaveName" />
+
+    <!-- Back button to go back to the previous screen -->
+    <Button fx:id="backButton" text="Back" onAction="#handleBack" />
+
+    <!-- Exit button (with exit method) -->
+    <Button text="Exit" onAction="#exitProgram" />
+</VBox>
+

@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?> 
+<?import javafx.scene.layout.BorderPane?> 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
+    <!-- Display the goal at the top -->
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <Text fx:id="welcomeText" text="Welcome, User" />
+            <Label fx:id="goalLabel" text="Goal: 2000 calories" />
+        </VBox>
+    </top>
+    
+    <!-- Center Region with VBox layout for buttons -->
     <center>
-        <PieChart fx:id="calorieChart"/>
+        <VBox alignment="CENTER" spacing="20">
+            <Text fx:id="caloriesConsumedText" text="Calories consumed today: 0" />
+            <!-- Add Food Button -->
+            <Button fx:id="addFoodButton" text="Add Food" onAction="#switchToAddFood" />
+            <!-- Add Exercise Button -->
+            <Button fx:id="addExerciseButton" text="Add Exercise" onAction="#switchToAddExercise" />
+        </VBox>
     </center>
+
+    <!-- Place Settings Button at the bottom-right -->
     <bottom>
-        <Button text="Add Food/Exercise" onAction="#switchToAdd"/>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="settingsButton" text="Settings" onAction="#goToSettings" />
+        </HBox>
     </bottom>
 </BorderPane>
