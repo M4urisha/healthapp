@@ -108,13 +108,11 @@ public class SettingsController {
     }
 
     public void setGoal(int newGoal) {
-        // Update the new goal in the SettingsController
-        newGoalField.setText(String.valueOf(newGoal));
+        SecondaryController.calorieGoal = newGoal;
     }
 
     public void setUserName(String name) {
-        // Set the user's name in the SettingsController
-        nameTextField.setText(name);
+        SecondaryController.userName = name;
     }
 }
 

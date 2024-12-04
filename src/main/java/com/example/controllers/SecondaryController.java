@@ -6,16 +6,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Map;
-
-import com.example.models.Food;
+import java.util.ArrayList;
+import java.util.List;
+//import com.example.models.Exercise;
 
 public class SecondaryController {
+
+    public static String userName = "User";
+    public static int calorieGoal = 2000;
+    public static int totalCalories = 0;
+    private static List<String> exerciseDetails = new ArrayList<>();
+    public static int totalFoodCalories = 0; 
+    public static int totalExerciseCalories = 0; 
 
     @FXML
     private Button addFoodButton;
@@ -23,25 +31,32 @@ public class SecondaryController {
     private Button addExerciseButton;
     @FXML
     private Button settingsButton;
-
+    @FXML
+    private ProgressBar calorieProgressBar;
     @FXML
     private Label goalLabel;
     @FXML
     private Label caloriesLabel;
     @FXML
-    private Text caloriesConsumedText;
+    private Label welcomeText;
     @FXML
-    private Text welcomeText;
-
-    private int calorieGoal = 2000;
-    public static int totalCalories = 0;  // Make sure totalCalories persists
-    private String userName = "User";
+    private ListView<String> exercisesListView; 
 
     @FXML
     public void initialize() {
-        goalLabel.setText("Goal: " + calorieGoal + " calories");
-        caloriesConsumedText.setText("Calories consumed today: " + totalCalories);
+        if (goalLabel != null) {
+            goalLabel.setText("Goal: " + calorieGoal + " calories");
+        }
+    
+        updateCaloriesConsumed(totalCalories);
+        
         updateWelcomeText();
+    
+        if (exercisesListView != null) {
+            exercisesListView.getItems().addAll(exerciseDetails);
+        } else {
+            System.out.println("exercisesListView is null!");
+        }
     }
 
     @FXML
@@ -82,13 +97,11 @@ public class SecondaryController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/settings.fxml"));
             Parent settingsPage = loader.load();
-    
+
             SettingsController settingsController = loader.getController();
-    
-            // Pass the current goal and username to SettingsController so it persists
             settingsController.setGoal(calorieGoal);
             settingsController.setUserName(userName);
-    
+
             Scene settingsScene = new Scene(settingsPage);
             Stage currentStage = (Stage) ((Node) settingsButton).getScene().getWindow();
             currentStage.setScene(settingsScene);
@@ -97,25 +110,35 @@ public class SecondaryController {
             e.printStackTrace();
         }
     }
+
+    public void updateCaloriesConsumed(int totalFoodCalories) {
+        if (caloriesLabel != null) {
+            caloriesLabel.setText("Total Calories: " + totalFoodCalories); // update food calories
+        }
     
-    public void updateCaloriesConsumed(int calories) {
-        // Update the label to show the current total calories consumed
-        caloriesLabel.setText("Calories Consumed: " + totalCalories);
-        caloriesConsumedText.setText("Calories consumed today: " + totalCalories);
-    }
+        double progress = (double) totalFoodCalories / calorieGoal;
+        if (progress > 1) {
+            progress = 1;
+        }
+    
+        if (calorieProgressBar != null) {
+            calorieProgressBar.setProgress(progress);
+        }
+    }    
 
     private void updateWelcomeText() {
         welcomeText.setText("Welcome, " + userName);
     }
 
     public void setUserName(String name) {
-        this.userName = name;
+        userName = name;
         updateWelcomeText();
     }
 
     public void setGoal(int newGoal) {
-        this.calorieGoal = newGoal;
+        calorieGoal = newGoal;
         goalLabel.setText("Goal: " + newGoal + " calories");
+        updateCaloriesConsumed(totalCalories);
     }
 
     public int getTotalCalories() {
@@ -130,20 +153,15 @@ public class SecondaryController {
         return userName;
     }
 
-    // Define the setAddedFoods method
-    public void setAddedFoods(Map<Food, Integer> addedFoods) {
-        int totalCaloriesFromFoods = 0;
-
-        // Calculate total calories based on the map
-        for (Map.Entry<Food, Integer> entry : addedFoods.entrySet()) {
-            Food food = entry.getKey();
-            int servings = entry.getValue();
-            totalCaloriesFromFoods += food.getCaloriesPerServing() * servings;
+    public void setAddedExercises(List<String> newExercises) {
+        if (exercisesListView != null) {
+            exerciseDetails.addAll(newExercises);
+            exercisesListView.getItems().clear();
+            exercisesListView.getItems().addAll(exerciseDetails);
+        } else {
+            System.out.println("exercisesListView is null!");
         }
-
-        // Update the total calories consumed
-        totalCalories += totalCaloriesFromFoods;
-        updateCaloriesConsumed(totalCaloriesFromFoods); // Make sure the label reflects updated calories
     }
+    
 }
 

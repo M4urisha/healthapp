@@ -5,28 +5,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ListView?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
-    <!-- Display the goal at the top -->
     <top>
         <VBox alignment="CENTER" spacing="10">
-            <Text fx:id="welcomeText" text="Welcome, User" />
+            <Label fx:id="welcomeText" text="Welcome, User" />
             <Label fx:id="goalLabel" text="Goal: 2000 calories" />
         </VBox>
     </top>
-    
-    <!-- Center Region with VBox layout for buttons -->
     <center>
         <VBox alignment="CENTER" spacing="20">
-            <Text fx:id="caloriesConsumedText" text="Calories consumed today: 0" />
-            <!-- Add Food Button -->
+            <ProgressBar fx:id="calorieProgressBar" />
+            <Label fx:id="caloriesLabel" text="Total Calories Consumed: 0" />
             <Button fx:id="addFoodButton" text="Add Food" onAction="#switchToAddFood" />
-            <!-- Add Exercise Button -->
             <Button fx:id="addExerciseButton" text="Add Exercise" onAction="#switchToAddExercise" />
+            <Label text="Calories Burned:" />
+            <ListView fx:id="exercisesListView" />
         </VBox>
     </center>
-
-    <!-- Place Settings Button at the bottom-right -->
     <bottom>
         <HBox alignment="CENTER_RIGHT">
             <Button fx:id="settingsButton" text="Settings" onAction="#goToSettings" />

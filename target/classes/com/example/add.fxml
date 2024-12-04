@@ -10,5 +10,8 @@
     <TextField fx:id="servingsTextField" promptText="How many servings?"/>
     <Label fx:id="addedItemsLabel"/>
     <Button text="Add Food" onAction="#addFoodItem"/>
+    <TextField fx:id="manualFoodName" promptText="Enter food name" />
+    <TextField fx:id="manualFoodCalories" promptText="Enter food calories" />
+    <Button text="Add Food Manually" onAction="#handleAddFoodManually" />
     <Button fx:id="backButton" text="Back" onAction="#handleBackButtonAction"/>
 </VBox>

@@ -12,90 +12,87 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class AddExerciseController {
 
     @FXML
-    private ComboBox<Exercise> exerciseComboBox;
+    private ComboBox<Exercise> exerciseComboBox;  
     @FXML
     private Label addedItemsLabel;
     @FXML
     private Button backButton;
     @FXML
-    private TextField minutesTextField;  // TextField for user to input minutes
+    private TextField minutesTextField;  
 
     private DatabaseQueries dbQueries;
-    private List<Exercise> addedExercises;
+    private List<Exercise> exerciseList;
 
     public AddExerciseController() {
         dbQueries = new DatabaseQueries();
-        addedExercises = new ArrayList<>();
     }
 
     @FXML
     public void initialize() {
-        // Load exercises into the combo box
-        List<Exercise> exerciseList = dbQueries.getExerciseItems();
+        // Load exercises from the database into the combo box
+        exerciseList = dbQueries.getExerciseItems();
         exerciseComboBox.getItems().clear();
         exerciseComboBox.getItems().addAll(exerciseList);
     }
 
     @FXML
     private void addExerciseItem() {
-        // Get selected exercise from the combo box
         Exercise selectedExercise = exerciseComboBox.getValue();
         if (selectedExercise != null) {
-            // Get the number of minutes the user performed the exercise
             String minutesText = minutesTextField.getText();
             int minutes = 0;
             try {
-                // Parse the minutes input to an integer
                 minutes = Integer.parseInt(minutesText);
             } catch (NumberFormatException e) {
-                // If the input is not a valid number, show an error message
                 addedItemsLabel.setText("Please enter a valid number for minutes.");
                 return;
             }
-
-            // Calculate total calories burned (calories per minute * number of minutes)
+    
             int totalCaloriesBurned = selectedExercise.getCaloriesBurned() * minutes;
+    
+            // Update total exercise calories, not affecting total food calories
+            SecondaryController.totalCalories -= totalCaloriesBurned; // If you subtract calories burned
+            SecondaryController secondaryController = getSecondaryController(); // Get controller via FXMLLoader
+            secondaryController.updateCaloriesConsumed(SecondaryController.totalCalories); // Update total calories
+    
+            // Add to the exercise list
+            List<String> exerciseDetails = new ArrayList<>();
+            exerciseDetails.add(selectedExercise.getExerciseName() + " - " + minutes + " min - " + totalCaloriesBurned + " calories");
+            secondaryController.setAddedExercises(exerciseDetails);
 
-            // Add the selected exercise and the total calories burned to the list
-            addedExercises.add(selectedExercise);
-
-            // Update the label to show all added exercises and total calories burned
-            StringBuilder addedItems = new StringBuilder("Added Exercise Items:\n");
-            for (Exercise exercise : addedExercises) {
-                addedItems.append(exercise.getExerciseName())
-                        .append(" - ").append(exercise.getCaloriesBurned())
-                        .append(" calories/minute\n");
-            }
-            addedItems.append("Total Calories Burned: ").append(totalCaloriesBurned).append("\n");
-            addedItemsLabel.setText(addedItems.toString());
-
-            // Update the total calories in the static variable of SecondaryController
-            SecondaryController.totalCalories -= totalCaloriesBurned;  // Deduct calories burned from total
-
-            // Call updateCaloriesConsumed on the SecondaryController instance, passing the burned calories
-            updateCaloriesInSecondaryController(totalCaloriesBurned);
+            addedItemsLabel.setText("Exercise added: " + selectedExercise.getExerciseName() + ", burned " + totalCaloriesBurned + " calories.");
         }
     }
 
-    private void updateCaloriesInSecondaryController(int caloriesBurned) {
+    private SecondaryController getSecondaryController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/secondary.fxml"));
+            loader.load(); 
+            return loader.getController(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; 
+        }
+    }
+    
+
+    @FXML
+    private void handleBackButtonAction() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/secondary.fxml"));
             Parent secondaryPage = loader.load();
             SecondaryController secondaryController = loader.getController();
+            
+            secondaryController.updateCaloriesConsumed(SecondaryController.totalCalories);
 
-            // Pass the updated total calories to the secondary screen
-            secondaryController.updateCaloriesConsumed(caloriesBurned);
-
-            // Switch to the secondary scene
-            Scene secondaryScene = new Scene(secondaryPage);
+            Scene secondaryScene = new Scene(secondaryPage, 375, 667);
             Stage currentStage = (Stage) ((Node) backButton).getScene().getWindow();
             currentStage.setScene(secondaryScene);
             currentStage.show();
@@ -103,10 +100,4 @@ public class AddExerciseController {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void handleBackButtonAction() {
-        updateCaloriesInSecondaryController(0); // Ensure that calories are updated when going back
-    }
 }
-
