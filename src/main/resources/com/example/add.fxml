@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AddController" spacing="10">
-    <ComboBox fx:id="foodComboBox" prefWidth="200"/>
-    <TextField fx:id="servingsTextField" promptText="How many servings?"/>
-    <Label fx:id="addedItemsLabel"/>
-    <Button text="Add Food" onAction="#addFoodItem"/>
-    <TextField fx:id="manualFoodName" promptText="Enter food name" />
-    <TextField fx:id="manualFoodCalories" promptText="Enter food calories" />
-    <Button text="Add Food Manually" onAction="#handleAddFoodManually" />
-    <Button fx:id="backButton" text="Back" onAction="#handleBackButtonAction"/>
-</VBox>
+<AnchorPane prefHeight="540.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AddController">
+   <ImageView fitHeight="650.0" fitWidth="330.0" layoutX="5.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/black_phone-removebg-preview.png" />
+      </image>
+   </ImageView>
+    <!-- ComboBox for selecting food -->
+    <ComboBox fx:id="foodComboBox" layoutX="52.0" layoutY="132.0" prefHeight="47.0" prefWidth="224.0" style="-fx-border-color: #3f7e03; -fx-background-color: #FFFFFF;" />
+    
+    <!-- TextField for entering servings -->
+    <TextField fx:id="servingsTextField" layoutX="54.0" layoutY="192.0" prefHeight="27.0" prefWidth="217.0" promptText="How many servings?" style="-fx-border-color: #3f7e03; -fx-background-color: #ffffff;" />
+    
+    <!-- Label for displaying added items -->
+    <Label fx:id="addedItemsLabel" alignment="TOP_LEFT" layoutX="34.0" layoutY="490.0" prefHeight="125.0" prefWidth="271.0" text="Added Food Items:" wrapText="true">
+      <font>
+         <Font name="Arial" size="11.0" />
+      </font></Label>
+    
+    <!-- Button for adding food -->
+    <Button layoutX="127.0" layoutY="247.0" onAction="#addFoodItem" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" text="Add Food" />
+    
+    <!-- TextField for entering manual food name -->
+    <TextField fx:id="manualFoodName" layoutX="88.0" layoutY="360.0" promptText="Enter food name" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" />
+    
+    <!-- TextField for entering manual food calories -->
+    <TextField fx:id="manualFoodCalories" layoutX="88.0" layoutY="394.0" promptText="Enter food calories" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" />
+    
+    <!-- Button for adding food manually -->
+    <Button layoutX="146.0" layoutY="449.0" onAction="#handleAddFoodManually" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" text="Add" />
+   <ImageView fitHeight="31.0" fitWidth="271.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/topofphone.png" />
+      </image>
+   </ImageView>
+   <ImageView blendMode="MULTIPLY" fitHeight="39.0" fitWidth="151.0" layoutX="90.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/Capture.PNG" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="34.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/Ellipse%2029.png" />
+      </image>
+   </ImageView>
+   <Text layoutX="80.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Food Manually">
+      <font>
+         <Font name="Arial Bold" size="18.0" />
+      </font>
+   </Text>
+    
+    <!-- Back Button -->
+    <Button fx:id="backButton" layoutX="33.0" layoutY="45.0" onAction="#handleBackButtonAction" style="-fx-background-color: transparent;">
+      <graphic>
+         <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <image>
+               <Image url="@images/Arrow%20Down.png" />
+            </image>
+         </ImageView>
+      </graphic></Button>
+   <Text layoutX="100.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Food">
+      <font>
+         <Font name="Arial Bold" size="30.0" />
+      </font>
+   </Text>
+</AnchorPane>

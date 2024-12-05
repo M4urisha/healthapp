@@ -16,8 +16,8 @@ public class FitnessApp extends Application {
         primaryStage.setTitle("Health App");
         setRoot("primary"); // Starts with the primary scene
 
-        primaryStage.setWidth(375);  // Set width to 375px
-        primaryStage.setHeight(667); // Set height to 667px
+        primaryStage.setWidth(353);  // Set width to 375px
+        primaryStage.setHeight(680); // Set height to 667px
     }
 
     public static void setRoot(String fxml) throws IOException {

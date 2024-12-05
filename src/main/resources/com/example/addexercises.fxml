@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Button?> 
-<?import javafx.scene.layout.BorderPane?> 
-<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AddExerciseController">
-    <center>
-        <VBox spacing="10" alignment="CENTER">
-            <Label text="Select Exercise" />
-            <ComboBox fx:id="exerciseComboBox" prefWidth="200" />
-            <TextField fx:id="minutesTextField" promptText="Enter minutes" />
-            <Button text="Add Exercise" onAction="#addExerciseItem" />
-            <Label fx:id="addedItemsLabel" />
-        </VBox>
-    </center>
-    <bottom>
-        <Button fx:id="backButton" text="Back" onAction="#handleBackButtonAction" />
-    </bottom>
-</BorderPane>
+<AnchorPane prefHeight="540.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AddExerciseController">
+   <ImageView fitHeight="650.0" fitWidth="330.0" layoutX="5.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/black_phone-removebg-preview.png" />
+      </image>
+   </ImageView>
+    <!-- Label for exercise selection -->
+    <Label layoutX="68.0" layoutY="84.0" text="Add Exercise">
+      <font>
+         <Font name="Arial Bold" size="30.0" />
+      </font></Label>
+    
+    <!-- ComboBox for exercise selection -->
+    <ComboBox fx:id="exerciseComboBox" layoutX="52.0" layoutY="132.0" prefHeight="47.0" prefWidth="224.0" style="-fx-border-color: #3F7E03; -fx-background-color: #FFFFFF;" />
+    
+    <!-- TextField for entering minutes -->
+    <TextField fx:id="minutesTextField" layoutX="54.0" layoutY="192.0" prefHeight="27.0" prefWidth="217.0" promptText="Enter minutes" style="-fx-border-color: #3F7E03; -fx-background-color: #FFFFFF;" />
+    
+    <!-- Button to add exercise -->
+    <Button layoutX="120.0" layoutY="243.0" onAction="#addExerciseItem" style="-fx-background-color: #FFFFFF; -fx-border-color: #3F7E03;" text="Add Exercise" />
+    
+    <!-- Label for showing added items -->
+    <Label fx:id="addedItemsLabel" layoutX="72.0" layoutY="308.0" maxWidth="200.0" text="Exercise Added: " textAlignment="CENTER" wrapText="true">
+      <font>
+         <Font name="Arial Bold" size="22.0" />
+      </font></Label>
+   <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="34.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/Ellipse%2029.png" />
+      </image>
+   </ImageView>
+    
+    <!-- Back button -->
+    <Button fx:id="backButton" layoutX="33.0" layoutY="45.0" onAction="#handleBackButtonAction" style="-fx-background-color: transparent;">
+      <graphic>
+         <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <image>
+               <Image url="@images/Arrow%20Down.png" />
+            </image>
+         </ImageView>
+      </graphic></Button>
+   <ImageView fitHeight="31.0" fitWidth="271.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/topofphone.png" />
+      </image>
+   </ImageView>
+   <ImageView blendMode="MULTIPLY" fitHeight="39.0" fitWidth="151.0" layoutX="90.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/Capture.PNG" />
+      </image>
+   </ImageView>
+</AnchorPane>

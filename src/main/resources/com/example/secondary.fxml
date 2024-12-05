@@ -1,35 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Button?> 
-<?import javafx.scene.layout.BorderPane?> 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
-    <top>
-        <VBox alignment="CENTER" spacing="10">
-            <Label fx:id="welcomeText" text="Welcome, User" />
-            <Label fx:id="goalLabel" text="Goal: 2000 calories" />
-        </VBox>
-    </top>
-
-    <center>
-        <VBox alignment="CENTER" spacing="20">
-            <Label fx:id="caloriesLabel" text="Total Calories Consumed: 0" />
-            <ProgressBar fx:id="calorieProgressBar" />
-            <Label fx:id="exerciseLabel" text="Total Calories Burned: 0" />
-            <ProgressBar fx:id="exerciseProgressBar" /> 
-            <Button fx:id="addFoodButton" text="Add Food" onAction="#switchToAddFood" />
-            <Button fx:id="addExerciseButton" text="Add Exercise" onAction="#switchToAddExercise" />
-        </VBox>
-    </center>
-    <bottom>
-        <HBox alignment="CENTER_RIGHT">
-            <Button fx:id="settingsButton" text="Settings" onAction="#goToSettings" />
-        </HBox>
-    </bottom>
+<BorderPane prefHeight="540.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
+   <bottom>
+        <AnchorPane prefHeight="648.0" prefWidth="316.0" stylesheets="@/com/example/style.css" BorderPane.alignment="CENTER">
+         <Rectangle arcHeight="7.0" arcWidth="10.0" fill="WHITE" height="62.0" layoutX="35.0" layoutY="416.0" stroke="#cde26d" strokeType="INSIDE" width="263.0" />
+         <ImageView fitHeight="42.0" fitWidth="286.0" layoutX="24.0" layoutY="585.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/Rectangle%207.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="650.0" fitWidth="330.0" layoutX="5.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/black_phone-removebg-preview.png" />
+            </image>
+         </ImageView>
+         <Rectangle arcHeight="7.0" arcWidth="10.0" fill="WHITE" height="62.0" layoutX="35.0" layoutY="493.0" stroke="#cde26d" strokeType="INSIDE" width="263.0" />
+         <Rectangle arcHeight="5.0" arcWidth="10.0" fill="WHITE" height="121.0" layoutX="170.0" layoutY="188.0" stroke="#cde26d" strokeType="INSIDE" width="130.0" />
+         <Rectangle arcHeight="5.0" arcWidth="10.0" fill="WHITE" height="121.0" layoutX="35.0" layoutY="188.0" stroke="#cde26d" strokeType="INSIDE" width="130.0" />
+            <Text fx:id="welcomePart" layoutX="84.0" layoutY="87.0" style="-fx-font-size: 14px; -fx-fill: #727272; -fx-font-family: Georgia;" text="Welcome, ">
+            <font>
+               <Font size="10.0" />
+            </font></Text>
+            <Text fx:id="userPart" layoutX="83.0" layoutY="108.0" style="-fx-font-size: 20px; -fx-fill: #000000; -fx-font-family: Georgia;" text="User" wrappingWidth="203.630859375">
+            <font>
+               <Font name="Candara" size="10.0" />
+            </font></Text>
+            
+            <Label fx:id="goalLabel" layoutX="38.0" layoutY="102.0" prefHeight="101.0" prefWidth="130.0" text="Goal: 2000 calories" wrapText="true" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="102.0">
+            <font>
+               <Font name="Georgia" size="24.0" />
+            </font></Label>
+            
+            <Label fx:id="caloriesLabel" alignment="CENTER" layoutX="56.0" layoutY="228.0" lineSpacing="1.0" prefHeight="73.0" prefWidth="95.0" text="Total Calories Consumed: 0" wrapText="true" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="228.0">
+            <font>
+               <Font name="Georgia" size="14.0" />
+            </font></Label>
+            <ProgressBar fx:id="calorieProgressBar" layoutX="50.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.52" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="212.0" />
+            
+            <Label fx:id="exerciseLabel" layoutX="182.0" layoutY="231.0" prefHeight="66.0" prefWidth="107.0" text="Total Calories Burned: 0" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="231.0">
+            <font>
+               <Font name="Georgia" size="14.0" />
+            </font></Label>
+            <ProgressBar fx:id="exerciseProgressBar" layoutX="185.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.48" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="212.0" />
+            <Button fx:id="addExerciseButton" layoutX="235.0" layoutY="504.0" onAction="#switchToAddExercise" prefHeight="38.0" prefWidth="31.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="504.0">
+            <graphic>
+               <ImageView fitHeight="39.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/Plus.png" />
+                  </image>
+               </ImageView>
+            </graphic></Button>
+            
+                  <Button fx:id="addFoodButton" layoutX="235.0" layoutY="423.0" onAction="#switchToAddFood" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="423.0">
+            <graphic>
+               <ImageView fitHeight="39.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/Plus.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+            <Button fx:id="settingsButton" layoutX="21.0" layoutY="61.0" onAction="#goToSettings" prefHeight="60.0" prefWidth="70.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="61.0">
+            <graphic>
+               <ImageView fitHeight="52.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/user-removebg-preview.png" />
+                  </image>
+               </ImageView>
+            </graphic></Button>
+            
+            <ImageView blendMode="MULTIPLY" fitHeight="39.0" fitWidth="151.0" layoutX="92.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@images/Capture.PNG" />
+                </image>
+            </ImageView>
+            
+            <ImageView fitHeight="34.0" fitWidth="270.0" layoutX="31.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@images/topofphone.png" />
+                </image>
+            </ImageView>
+         <Text layoutX="98.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Food" wrappingWidth="85.037109375">
+            <font>
+               <Font name="Arial" size="15.0" />
+            </font>
+         </Text>
+         <Text layoutX="98.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Exercises">
+            <font>
+               <Font name="Arial" size="15.0" />
+            </font>
+         </Text>
+         <ImageView fitHeight="57.0" fitWidth="78.0" layoutX="28.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/lunch-removebg-preview%201.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="54.0" fitWidth="56.0" layoutX="40.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/running_shoe-removebg-preview%201.png" />
+            </image>
+         </ImageView>
+         <Text fill="#4a4a4a" layoutX="-21.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Believe in yourself!" textAlignment="CENTER" wrappingWidth="274.0">
+            <font>
+               <Font name="Georgia" size="36.0" />
+            </font>
+         </Text>
+        </AnchorPane>
+   </bottom>
 </BorderPane>
-

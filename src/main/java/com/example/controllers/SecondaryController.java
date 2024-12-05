@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,7 +39,9 @@ public class SecondaryController {
     @FXML
     private Label exerciseLabel;
     @FXML
-    private Label welcomeText;
+    private Text welcomePart;  // Part for "Welcome"
+    @FXML
+    private Text userPart;  // Part for the user's name
 
     @FXML
     public void initialize() {
@@ -47,6 +50,7 @@ public class SecondaryController {
         } else {
             System.out.println("Exercise Progress Bar is null!");
         }
+        System.out.println("Initializing SecondaryController...");  // Add this line to debug
         if (goalLabel != null) {
             goalLabel.setText("Goal: " + calorieGoal + " calories");
         }
@@ -54,7 +58,6 @@ public class SecondaryController {
         updateExerciseCalories(totalExerciseCalories);
         updateWelcomeText();
     }
-    
     
     @FXML
     private void switchToAddFood() {
@@ -92,8 +95,7 @@ public class SecondaryController {
         }
     }
     
-    
-
+    // In SecondaryController when navigating to Settings screen
     @FXML
     private void goToSettings() {
         try {
@@ -101,6 +103,7 @@ public class SecondaryController {
             Parent settingsPage = loader.load();
 
             SettingsController settingsController = loader.getController();
+            settingsController.setSecondaryController(this);  // Pass the current SecondaryController to SettingsController
             settingsController.setGoal(calorieGoal);
             settingsController.setUserName(userName);
 
@@ -112,6 +115,7 @@ public class SecondaryController {
             e.printStackTrace();
         }
     }
+
 
     public void updateCaloriesConsumed(int totalFoodCalories) {
         if (caloriesLabel != null) {
@@ -138,8 +142,6 @@ public class SecondaryController {
             });
         }
     }
-    
-    
 
     public void updateExerciseCalories(int totalExerciseCalories) {
         if (exerciseLabel != null) {
@@ -147,8 +149,9 @@ public class SecondaryController {
         }
     }
 
-    private void updateWelcomeText() {
-        welcomeText.setText("Welcome, " + userName);
+    public void updateWelcomeText() {
+        welcomePart.setText("Welcome, ");
+        userPart.setText(userName); // Dynamically set the user's name
     }
 
     public void setUserName(String name) {

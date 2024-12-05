@@ -34,10 +34,18 @@ public class SettingsController {
         }
     }
 
+    public void setSecondaryController(SecondaryController secondaryController) {
+        this.secondaryController = secondaryController;
+    }
+
     @FXML
     public void handleChangeGoal() {
         try {
-            int newGoal = Integer.parseInt(newGoalField.getText()); // Get the new goal from newGoalField
+            String goalText = newGoalField.getText();
+            if (goalText.isEmpty()) {
+                goalText = "2000"; // Set a default value if the field is empty
+            }
+            int newGoal = Integer.parseInt(goalText); // Get the new goal from newGoalField
             if (secondaryController != null) {
                 secondaryController.setGoal(newGoal); // Update goal in SecondaryController
                 goalLabel.setText("Goal: " + newGoal + " calories"); // Update the goalLabel in settings
@@ -47,19 +55,15 @@ public class SettingsController {
         }
     }
     
-    
-
     @FXML
     private void handleSaveName() {
         String newUserName = nameTextField.getText();  // Retrieve the new name from the TextField
         if (secondaryController != null) {
             secondaryController.setUserName(newUserName);  // Set the new user name
+            secondaryController.updateWelcomeText();  // Update the welcome text in SecondaryController
         }
         switchToSecondary();  // Go back to the secondary screen
     }
-    
-    
-
 
     @FXML
     private void handleBack() {
@@ -67,11 +71,16 @@ public class SettingsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/secondary.fxml"));
             Parent secondaryRoot = loader.load();
 
-            secondaryController = loader.getController();
+            SecondaryController secondaryController = loader.getController();
 
             // Pass the updated goal and username to SecondaryController
-            secondaryController.setGoal(Integer.parseInt(newGoalField.getText()));  // Pass the updated goal
-            secondaryController.setUserName(nameTextField.getText());  // Pass the updated name
+            String goalText = newGoalField.getText();
+            if (goalText.isEmpty()) {
+                goalText = "2000"; // Set a default value if the field is empty
+            }
+            //secondaryController.setGoal(Integer.parseInt(goalText));  // Pass the updated goal
+            //secondaryController.setUserName(nameTextField.getText());  // Pass the updated name
+            secondaryController.updateWelcomeText();  // Update the welcome text
 
             Scene secondaryScene = new Scene(secondaryRoot);
             Stage stage = (Stage) newGoalField.getScene().getWindow();
@@ -84,15 +93,20 @@ public class SettingsController {
 
     private void switchToSecondary() {
         try {
+            // Ensure the goal field is not empty
+            String goalText = newGoalField.getText();
+            if (goalText.isEmpty()) {
+                goalText = "2000"; // Set a default value if the field is empty
+            }
+            int newGoal = Integer.parseInt(goalText);  // Parse the goal only if it's not empty
+            secondaryController.setGoal(newGoal);  // Pass the updated goal
+    
+            secondaryController.setUserName(nameTextField.getText());  // Pass the updated name
+    
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/secondary.fxml"));
             Parent secondaryRoot = loader.load();
-
             secondaryController = loader.getController();
-
-            // Pass the updated goal and username
-            secondaryController.setGoal(Integer.parseInt(newGoalField.getText()));
-            secondaryController.setUserName(nameTextField.getText());
-
+    
             Scene secondaryScene = new Scene(secondaryRoot);
             Stage stage = (Stage) newGoalField.getScene().getWindow();
             stage.setScene(secondaryScene);
@@ -101,6 +115,7 @@ public class SettingsController {
             e.printStackTrace();
         }
     }
+    
 
     @FXML
     private void exitProgram() {
@@ -115,4 +130,3 @@ public class SettingsController {
         SecondaryController.userName = name;
     }
 }
-
