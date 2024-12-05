@@ -1,3 +1,13 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "C:/Program Files/Java/jdk-21",  // Replace with the actual path to JDK 21
+            "default": true
+        }
+    ],
+    "java.project.referencedLibraries": [
+        "C:/Users/Maurisha/Downloads/openjfx-21.0.5_windows-x64_bin-sdk/javafx-sdk-21.0.5/lib/*.jar"
+    ]
 }

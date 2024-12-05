@@ -24,17 +24,17 @@ import java.util.Map;
 public class AddController {
 
     @FXML
-    private ComboBox<Food> foodComboBox;
+    public ComboBox<Food> foodComboBox;
     @FXML
-    private Label addedItemsLabel;
+    public Label addedItemsLabel;
     @FXML
-    private Button backButton;
+    public Button backButton;
     @FXML
-    private TextField servingsTextField;
+    public TextField servingsTextField;
     @FXML
-    private TextField manualFoodName;
+    public TextField manualFoodName;
     @FXML
-    private TextField manualFoodCalories;
+    public TextField manualFoodCalories;
 
     private DatabaseQueries dbQueries;
     private Map<Food, Integer> addedFoods = new HashMap<>();
@@ -53,7 +53,7 @@ public class AddController {
     }
 
     @FXML
-    private void addFoodItem() {
+    public void addFoodItem() {
         Food selectedFood = foodComboBox.getValue();
         if (selectedFood != null) {
             // Get servings input

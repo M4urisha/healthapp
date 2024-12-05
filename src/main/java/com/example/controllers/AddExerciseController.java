@@ -20,13 +20,13 @@ import java.util.List;
 public class AddExerciseController {
 
     @FXML
-    private ComboBox<Exercise> exerciseComboBox;  
+    public ComboBox<Exercise> exerciseComboBox;  
     @FXML
-    private Label addedItemsLabel;
+    public Label addedItemsLabel;
     @FXML
     private Button backButton;
     @FXML
-    private TextField minutesTextField;  
+    public TextField minutesTextField;  
 
     private DatabaseQueries dbQueries;
     private List<Exercise> exerciseList;
@@ -46,7 +46,7 @@ public class AddExerciseController {
     }
 
     @FXML
-    private void addExerciseItem() {
+    public void addExerciseItem() {
         Exercise selectedExercise = exerciseComboBox.getValue();
         if (selectedExercise != null) {
             String minutesText = minutesTextField.getText();

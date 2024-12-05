@@ -29,15 +29,15 @@ public class SecondaryController {
     @FXML
     private Button settingsButton;
     @FXML
-    private ProgressBar calorieProgressBar;
+    public ProgressBar calorieProgressBar;
     @FXML
-    private ProgressBar exerciseProgressBar;
+    public ProgressBar exerciseProgressBar;
     @FXML
     private Label goalLabel;
     @FXML
-    private Label caloriesLabel;
+    public Label caloriesLabel;
     @FXML
-    private Label exerciseLabel;
+    public Label exerciseLabel;
     @FXML
     private Text welcomePart;  // Part for "Welcome"
     @FXML
