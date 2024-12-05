@@ -20,7 +20,7 @@ public class SettingsController {
     @FXML
     private Label goalLabel;
     @FXML
-    public TextField nameTextField;
+    private TextField nameTextField;
 
     private SecondaryController secondaryController;
 
@@ -56,7 +56,7 @@ public class SettingsController {
     }
     
     @FXML
-    public void handleSaveName() {
+    private void handleSaveName() {
         String newUserName = nameTextField.getText();  // Retrieve the new name from the TextField
         if (secondaryController != null) {
             secondaryController.setUserName(newUserName);  // Set the new user name
