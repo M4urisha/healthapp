@@ -33,16 +33,6 @@
     <!-- Save Name button -->
     <Button fx:id="saveNameButton" layoutX="119.0" layoutY="332.0" onAction="#handleSaveName" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" text="Save Name" />
 
-    <!-- Back button to go back to the previous screen -->
-    <Button fx:id="backButton" layoutX="33.0" layoutY="45.0" onAction="#handleBack" rotate="90.0" style="-fx-background-color: transparent;">
-      <graphic>
-         <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@images/Arrow%20Down.png" />
-            </image>
-         </ImageView>
-      </graphic></Button>
-
     <!-- Exit button (with exit method) -->
     <Button layoutX="134.0" layoutY="552.0" onAction="#exitProgram" style="-fx-background-color: #ffffff; -fx-border-color: #3f7e03;" text="Log out" />
    <ImageView blendMode="MULTIPLY" fitHeight="39.0" fitWidth="151.0" layoutX="90.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
@@ -70,4 +60,14 @@
          <Font name="Arial" size="18.0" />
       </font>
    </Text>
+
+    <!-- Back button to go back to the previous screen -->
+    <Button fx:id="backButton" layoutX="33.0" layoutY="45.0" onAction="#handleBack" rotate="90.0" style="-fx-background-color: transparent;">
+      <graphic>
+         <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/Arrow%20Down.png" />
+            </image>
+         </ImageView>
+      </graphic></Button>
 </AnchorPane>

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="540.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
+<BorderPane prefHeight="540.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SecondaryController">
    <bottom>
         <AnchorPane prefHeight="648.0" prefWidth="316.0" stylesheets="@/com/example/style.css" BorderPane.alignment="CENTER">
          <Rectangle arcHeight="7.0" arcWidth="10.0" fill="WHITE" height="62.0" layoutX="35.0" layoutY="416.0" stroke="#cde26d" strokeType="INSIDE" width="263.0" />
@@ -46,13 +46,13 @@
             <font>
                <Font name="Georgia" size="14.0" />
             </font></Label>
-            <ProgressBar fx:id="calorieProgressBar" layoutX="50.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.52" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="212.0" />
+            <ProgressBar fx:id="calorieProgressBar" layoutX="50.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="212.0" />
             
             <Label fx:id="exerciseLabel" layoutX="182.0" layoutY="231.0" prefHeight="66.0" prefWidth="107.0" text="Total Calories Burned: 0" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="231.0">
             <font>
                <Font name="Georgia" size="14.0" />
             </font></Label>
-            <ProgressBar fx:id="exerciseProgressBar" layoutX="185.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.48" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="212.0" />
+            <ProgressBar fx:id="exerciseProgressBar" layoutX="185.0" layoutY="212.0" prefHeight="19.0" prefWidth="100.0" progress="0.0" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="212.0" />
             <Button fx:id="addExerciseButton" layoutX="235.0" layoutY="504.0" onAction="#switchToAddExercise" prefHeight="38.0" prefWidth="31.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="504.0">
             <graphic>
                <ImageView fitHeight="39.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">

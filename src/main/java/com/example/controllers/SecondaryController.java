@@ -1,6 +1,6 @@
 package com.example.controllers;
 
-import javafx.application.Platform;
+//import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -132,22 +132,32 @@ public class SecondaryController {
         }
     }    
 
-    public void updateExerciseProgressBar(double progress) {
+    public void updateExerciseProgressBar() {
         if (exerciseProgressBar != null) {
-            Platform.runLater(() -> {
-                // Ensure the progress bar updates only when the value changes significantly
-                if (Math.abs(exerciseProgressBar.getProgress() - progress) > 0.01) {
-                    exerciseProgressBar.setProgress(progress);
-                }
-            });
+            // Calculate progress for the exercise progress bar, similar to food
+            double progress = (double) totalExerciseCalories / calorieGoal;
+            if (progress > 1) {
+                progress = 1;
+            }
+    
+            // Update the exercise progress bar, like the food progress bar
+            exerciseProgressBar.setProgress(progress);
         }
     }
+    
+    
+    
+    
 
     public void updateExerciseCalories(int totalExerciseCalories) {
         if (exerciseLabel != null) {
-            exerciseLabel.setText("Total Calories Burned: " + totalExerciseCalories); // Update burned calories
+            exerciseLabel.setText("Total Calories Burned: " + totalExerciseCalories);
         }
+    
+        // Update the exercise progress bar (ensure smooth updates)
+        updateExerciseProgressBar();
     }
+    
 
     public void updateWelcomeText() {
         welcomePart.setText("Welcome, ");

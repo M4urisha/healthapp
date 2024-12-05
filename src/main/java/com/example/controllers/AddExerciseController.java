@@ -61,25 +61,18 @@ public class AddExerciseController {
             int totalCaloriesBurned = selectedExercise.getCaloriesBurned() * minutes;
             SecondaryController.totalExerciseCalories += totalCaloriesBurned;
     
-            // Calculate normalized progress and ensure it doesn't exceed 100%
-            double progress = (double) SecondaryController.totalExerciseCalories / SecondaryController.calorieGoal;
-    
-            // Clamp the progress to not exceed 100%
-            progress = Math.min(progress, 1.0); // Ensure progress doesn't go above 1.0
-    
-            // Debugging: Check progress value
-            System.out.println("Progress being set: " + progress);
-    
-            // Call the method in SecondaryController to update the progress bar
+            // Update the exercise calories in the SecondaryController
             if (secondaryController != null) {
-                // Update the progress bar through the SecondaryController
-                secondaryController.updateExerciseProgressBar(progress);
+                secondaryController.updateExerciseCalories(SecondaryController.totalExerciseCalories);
             }
     
             // Feedback to the user
             addedItemsLabel.setText("Exercise added: " + selectedExercise.getExerciseName() + ", burned " + totalCaloriesBurned + " calories.");
         }
     }
+    
+
+    
     
     // Setter method to inject the SecondaryController instance
     public void setSecondaryController(SecondaryController controller) {
@@ -103,4 +96,5 @@ public class AddExerciseController {
             e.printStackTrace();
         }
     }
+
 }
