@@ -15,14 +15,15 @@
             <Label fx:id="goalLabel" text="Goal: 2000 calories" />
         </VBox>
     </top>
+
     <center>
         <VBox alignment="CENTER" spacing="20">
-            <ProgressBar fx:id="calorieProgressBar" />
             <Label fx:id="caloriesLabel" text="Total Calories Consumed: 0" />
+            <ProgressBar fx:id="calorieProgressBar" />
+            <Label fx:id="exerciseLabel" text="Total Calories Burned: 0" />
+            <ProgressBar fx:id="exerciseProgressBar" /> 
             <Button fx:id="addFoodButton" text="Add Food" onAction="#switchToAddFood" />
             <Button fx:id="addExerciseButton" text="Add Exercise" onAction="#switchToAddExercise" />
-            <Label text="Calories Burned:" />
-            <ListView fx:id="exercisesListView" />
         </VBox>
     </center>
     <bottom>
@@ -31,3 +32,4 @@
         </HBox>
     </bottom>
 </BorderPane>
+

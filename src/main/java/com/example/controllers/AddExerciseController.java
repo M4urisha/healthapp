@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.models.Exercise;
 import com.example.utils.DatabaseQueries;
+//import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.util.ArrayList;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class AddExerciseController {
 
     private DatabaseQueries dbQueries;
     private List<Exercise> exerciseList;
+
+    private SecondaryController secondaryController; // This field is now being used properly
 
     public AddExerciseController() {
         dbQueries = new DatabaseQueries();
@@ -47,7 +50,7 @@ public class AddExerciseController {
         Exercise selectedExercise = exerciseComboBox.getValue();
         if (selectedExercise != null) {
             String minutesText = minutesTextField.getText();
-            int minutes = 0;
+            int minutes;
             try {
                 minutes = Integer.parseInt(minutesText);
             } catch (NumberFormatException e) {
@@ -56,32 +59,32 @@ public class AddExerciseController {
             }
     
             int totalCaloriesBurned = selectedExercise.getCaloriesBurned() * minutes;
+            SecondaryController.totalExerciseCalories += totalCaloriesBurned;
     
-            // Update total exercise calories, not affecting total food calories
-            SecondaryController.totalCalories -= totalCaloriesBurned; // If you subtract calories burned
-            SecondaryController secondaryController = getSecondaryController(); // Get controller via FXMLLoader
-            secondaryController.updateCaloriesConsumed(SecondaryController.totalCalories); // Update total calories
+            // Calculate normalized progress and ensure it doesn't exceed 100%
+            double progress = (double) SecondaryController.totalExerciseCalories / SecondaryController.calorieGoal;
     
-            // Add to the exercise list
-            List<String> exerciseDetails = new ArrayList<>();
-            exerciseDetails.add(selectedExercise.getExerciseName() + " - " + minutes + " min - " + totalCaloriesBurned + " calories");
-            secondaryController.setAddedExercises(exerciseDetails);
-
+            // Clamp the progress to not exceed 100%
+            progress = Math.min(progress, 1.0); // Ensure progress doesn't go above 1.0
+    
+            // Debugging: Check progress value
+            System.out.println("Progress being set: " + progress);
+    
+            // Call the method in SecondaryController to update the progress bar
+            if (secondaryController != null) {
+                // Update the progress bar through the SecondaryController
+                secondaryController.updateExerciseProgressBar(progress);
+            }
+    
+            // Feedback to the user
             addedItemsLabel.setText("Exercise added: " + selectedExercise.getExerciseName() + ", burned " + totalCaloriesBurned + " calories.");
         }
     }
-
-    private SecondaryController getSecondaryController() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/secondary.fxml"));
-            loader.load(); 
-            return loader.getController(); 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null; 
-        }
-    }
     
+    // Setter method to inject the SecondaryController instance
+    public void setSecondaryController(SecondaryController controller) {
+        this.secondaryController = controller;
+    }
 
     @FXML
     private void handleBackButtonAction() {
